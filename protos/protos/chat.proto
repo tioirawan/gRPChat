@@ -1,0 +1,23 @@
+message Message {
+    required string name = 1;
+    required int32 id = 2;
+    optional string email = 3;
+}
+
+message Room {
+    required int32 id = 2;
+}
+
+message MessageRequest {
+    required Room room = 1;
+    required Message message = 2;
+}
+
+message StreamMessageRequest {
+    required Room room = 1;
+}
+
+service Chat {
+    rpc SendMessage (MessageRequest) returns (Message);
+    rpc StreamMessages (StreamMessageRequest) returns (stream Message);
+}
